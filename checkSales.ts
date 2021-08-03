@@ -39,6 +39,7 @@ const buildMessage = (sale: any) => (
 )
 
 async function main() {
+try {
   const channel = await discordSetup();
   const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3_600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
@@ -60,6 +61,9 @@ async function main() {
       return channel.send(message)
     })
   );   
+} catch (error) {
+    console.log('error', error);
+	}
 }
 
 main()
