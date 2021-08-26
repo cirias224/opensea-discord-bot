@@ -55,7 +55,7 @@ try {
       contract_address: process.env.CONTRACT_ADDRESS!
   })).then((resp) => resp.json());
 
-  await Promise.all(
+  return await Promise.all(
     openSeaResponse?.asset_events?.reverse().map(async (sale: any) => {
       const message = buildMessage(sale);
       return channel.send(message)
